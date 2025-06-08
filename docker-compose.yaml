@@ -2,15 +2,11 @@ services:
   minecraft:
     image: docker.io/marctv/minecraft-papermc-server:latest
     restart: always
-    container_name: "mcserver"
+    container_name: "mc-proxy"
     environment:
-      PAPERMC_FLAGS: ""
-    deploy:
-      resources:
-        limits:
-          memory: 1G
+      VELOCITY_FLAGS: ""
     volumes:
-      - "/home/pi/mcserver:/data:rw"
+      - ./proxy:/data
     ports:
       - "25565:25565"
     # The following allow `docker attach minecraft` to work

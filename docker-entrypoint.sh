@@ -35,8 +35,8 @@ if [ "$(id -u)" -eq 0 ]; then
       fi
 
       # Set ownership and permissions
-      chown -vR $USER_ID:$GROUP_ID /opt/minecraft
-      chmod -vR ug+rwx /opt/minecraft
+      chown -vR $USER_ID:$GROUP_ID /opt/velocity
+      chmod -vR ug+rwx /opt/velocity
 
       if [ "$SKIP_PERM_CHECK" != "true" ]; then
           echo "change ownership of /data to $USER_ID:$GROUP_ID"
@@ -62,4 +62,4 @@ if [ -n "$JAVAFLAGS" ]; then
 fi
 
 # Execute the final command
-exec $JAVA_CMD -jar /opt/minecraft/paperspigot.jar $PAPERMC_FLAGS nogui
+exec $JAVA_CMD -jar /opt/velocity/velocity.jar $VELOCITY_FLAGS nogui
