@@ -7,7 +7,7 @@ on:
       download_version:
         description: 'papermc server version'
         required: true
-        default: '1.20.6'
+        default: '3.4.0-SNAPSHOT'
 
   # Allows you to trigger this workflow from another workflow
   repository_dispatch:
@@ -32,20 +32,14 @@ jobs:
         run: |
           BUILDS=$(curl -s -o builds.json https://api.papermc.io/v2/projects/velocity/versions/${{ env.BASE_VERSION }}/builds)
           BUILD_STABLE=$(jq 'last(.builds[] | select(.channel=="default")).build' builds.json)
-          BUILD_EXPERIMENTAL=$(jq 'last(.builds[] | select(.channel=="experimental")).build' builds.json)
           
-          if  [[ "$BUILD_STABLE" =~ ^[0-9]+$ ]]; then
             BUILD_NUMBER=$BUILD_STABLE
             BUILD_TYPE=stable
-          else
-            BUILD_NUMBER=$BUILD_EXPERIMENTAL
-            BUILD_TYPE=experimental
-          fi
           
           echo build_number="${BUILD_NUMBER}" >> $GITHUB_OUTPUT
           echo build_type="${BUILD_TYPE}" >> $GITHUB_OUTPUT
           echo build_url=https://api.papermc.io/v2/projects/velocity/versions/${{ env.BASE_VERSION }}/builds/${BUILD_NUMBER} >> $GITHUB_OUTPUT
-          echo download_url="https://api.papermc.io/v2/projects/velocity/versions/${{ env.BASE_VERSION }}/builds/${BUILD_NUMBER}/downloads/paper-${{ env.BASE_VERSION }}-${BUILD_NUMBER}.jar" >> $GITHUB_OUTPUT
+          echo download_url="https://api.papermc.io/v2/projects/velocity/versions/${{ env.BASE_VERSION }}/builds/${BUILD_NUMBER}/downloads/velocity-${{ env.BASE_VERSION }}-${BUILD_NUMBER}.jar" >> $GITHUB_OUTPUT
 
       - name: show version infos
         run: |
