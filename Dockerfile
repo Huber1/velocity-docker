@@ -15,8 +15,8 @@ RUN apt update && apt install -y gosu webp adduser netcat-openbsd && apt clean &
 EXPOSE 25565/tcp 25565/udp
 
 # define environment variables
-ENV JAVAFLAGS="-XX:+UseG1GC -XX:G1HeapRegionSize=4M -XX:+UnlockExperimentalVMOptions -XX:+ParallelRefProcEnabled -XX:+AlwaysPreTouch -XX:MaxInlineLevel=15"
-ENV VELOCITY_FLAG=""
+ENV JAVAFLAGS="-XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1HeapRegionSize=4M -XX:MaxInlineLevel=15"
+ENV VELOCITY_FLAGS=""
 
 # ENV MEMORYSIZE="1G"
 # Memory Management Notes:

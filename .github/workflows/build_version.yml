@@ -61,7 +61,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           labels: |
-            org.opencontainers.image.authors=Marc Tönsing <marc@marc.tv>
+            org.opencontainers.image.authors=Moritz Huber <2nd@moritzhuber.de>
           images: |
             name=ghcr.io/${{ github.repository }}
 
